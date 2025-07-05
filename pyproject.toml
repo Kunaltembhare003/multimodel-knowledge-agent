@@ -3,7 +3,7 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "multimodel_knowledge_agent1"
+name = "multimodel"
 version = "0.0.1"
 description = "Multimodal Personal Knowledge Base Agent (PKBA) that supports text and image inputs, and performs Q\u0026A, summarization, and image analysis"
 authors = [
@@ -24,8 +24,22 @@ dependencies = [
     "ruff",
     "tqdm",
     "typer",
+    "langchain (>=0.3.26,<0.4.0)",
+    "openai (>=1.93.0,<2.0.0)",
+    "chromadb (>=1.0.15,<2.0.0)",
+    "sentence-transformers (>=5.0.0,<6.0.0)",
+    "fastapi (>=0.115.14,<0.116.0)",
+    "uvicorn (>=0.35.0,<0.36.0)",
+    "python-multipart (>=0.0.20,<0.0.21)",
+    "pydantic[dotenv] (>=2.11.7,<3.0.0)",
+    "pillow (>=11.3.0,<12.0.0)",
+    "opencv-python (>=4.11.0.86,<5.0.0.0)",
+    "transformers (>=4.53.1,<5.0.0)",
+    "torchaudio (>=2.7.1,<3.0.0)",
+    "torchvision (>=0.22.1,<0.23.0)",
+    "huggingface (>=0.0.1,<0.0.2)",
 ]
-requires-python = "==3.13.5"
+requires-python = "==3.12.11"
 
 
 [tool.ruff]

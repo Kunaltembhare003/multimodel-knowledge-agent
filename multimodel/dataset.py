@@ -4,7 +4,7 @@ from loguru import logger
 from tqdm import tqdm
 import typer
 
-from multimodel_knowledge_agent1.config import PROCESSED_DATA_DIR, RAW_DATA_DIR
+from multimodel.config import PROCESSED_DATA_DIR, RAW_DATA_DIR
 
 app = typer.Typer()
 
