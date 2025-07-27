@@ -1,0 +1,50 @@
+nmae: CI Pipeline
+
+on:
+  push:
+    branches: 
+      - main
+    pull_request:
+      - main
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubantu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/Checkout@v3
+
+      - name:  Set up Python
+        uses: action/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: install poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+      
+      - name: install dependencies
+        run: |
+          poetry install
+
+      - name: Install Ruff and Pyright
+        run: |
+          pipx install ruff pyright
+
+      - name: Format check (ruff)
+        run: |
+          ruff format --check .
+        
+      - name: Lint check (ruff)
+        run: |
+          ruff check .
+        
+      - name: Type check (pyright)
+        run: |
+          pyright .
+        
+      - name: Run tests (pytest)
+        run: |
+          poetry run pytest
+
