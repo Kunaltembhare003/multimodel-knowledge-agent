@@ -38,19 +38,21 @@ dependencies = [
     "torchaudio (>=2.7.1,<3.0.0)",
     "torchvision (>=0.22.1,<0.23.0)",
     "huggingface (>=0.0.1,<0.0.2)",
+    "sentencepiece (>=0.2.0,<0.3.0)",
+    "langchain-openai (>=0.3.28,<0.4.0)",
 ]
 requires-python = "==3.12.11"
 
 
 [tool.ruff]
 line-length = 99
-src = ["multimodel_knowledge_agent1"]
-include = ["pyproject.toml", "multimodel_knowledge_agent1/**/*.py"]
+src = ["multimodel"]
+include = ["pyproject.toml", "multimodel/**/*.py"]
 
 [tool.ruff.lint]
 extend-select = ["I"]  # Add import sorting
 
 [tool.ruff.lint.isort]
-known-first-party = ["multimodel_knowledge_agent1"]
+known-first-party = ["multimodel"]
 force-sort-within-sections = true
 
