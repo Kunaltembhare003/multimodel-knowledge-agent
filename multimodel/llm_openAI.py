@@ -14,9 +14,8 @@ print(result)
 '''
 
 ### using ChatModel -? chatmodel fined tunned and structured for conversational use.
-from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-
+from langchain_openai import ChatOpenAI
 
 load_dotenv()
 llm_chat = ChatOpenAI(model="gpt-4", temperature=0.7, max_completion_tokens=15)
