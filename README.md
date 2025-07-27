@@ -12,11 +12,6 @@ Multimodal Personal Knowledge Base Agent (PKBA) that supports text and image inp
 ├── LICENSE            <- Open-source license if one is chosen
 ├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
 ├── README.md          <- The top-level README for developers using this project.
-├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
 │
 ├── docs               <- A default mkdocs project; see www.mkdocs.org for details
 │
@@ -39,7 +34,7 @@ Multimodal Personal Knowledge Base Agent (PKBA) that supports text and image inp
 │
 ├── setup.cfg          <- Configuration file for flake8
 │
-└── multimodel_knowledge_agent1   <- Source code for use in this project.
+└── multimodel_knowledge_agent   <- Source code for use in this project.
     │
     ├── __init__.py             <- Makes multimodel_knowledge_agent1 a Python module
     │

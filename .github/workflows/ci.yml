@@ -28,10 +28,6 @@ jobs:
         run: |
           poetry install
 
-      - name: Install Ruff and Pyright
-        run: |
-          pipx install ruff pyright
-
       - name: Format check (ruff)
         run: |
           ruff format --check .
