@@ -5,8 +5,9 @@ from langchain_core.prompts import load_prompt
 from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-
-from fetch_abstract import fetch_abstract
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from fetch_abstract import fetch_abstract, extract_text_from_pdf
+import PyPDF2
 
 load_dotenv()
 
@@ -23,15 +24,24 @@ template_path = home_dir.as_posix() + "/templates/summarization_templates.json"
 template = load_prompt(template_path)
 
 # load prompt input
-paper_abstract = fetch_abstract(str(input("Please provide DOI:")))
+pdf_path = input("Please provide the path to your PDF file: ").strip()
+pdf_text = extract_text_from_pdf(pdf_path)
+if not pdf_text.strip():
+    print("No text could be extracted from the PDF.")
+    exit()
+
+# Split the PDF text into chunks for the LLM (adjust chunk_size as needed)
+splitter = RecursiveCharacterTextSplitter(chunk_size=3000, chunk_overlap=100)
+chunks = splitter.split_text(pdf_text)
+paper_text = chunks[:5]
 style_input = input("Explanation style (e.g., Basic, Detailed): ").strip() or "Basic"
-length_input = input("Explanation length (e.g., 100 words, short): ").strip() or "100 words"
+length_input = input("Explanation length (e.g., 100, 200): ").strip() or "100"
 
 
 
     
 
-formatted_prompt = template.format(paper_abstract= paper_abstract,
+formatted_prompt = template.format(paper_abstract= paper_text,
                                     style_input= style_input,
                                     length_input= length_input)
 while True:
