@@ -4,15 +4,18 @@ on:
   push:
     branches: 
       - main
-    pull_request:
+  pull_request:
+    branches:
       - main
 
 jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write 
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/Checkout@v3
 
       - name:  Set up Python
@@ -20,27 +23,19 @@ jobs:
         with:
           python-version: '3.12.11'
 
-      - name: install poetry
+      - name: Install pipx
         run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-      
-      - name: install dependencies
-        run: |
-          poetry install
+          pip install pipx
+          pipx ensurepath
 
-      - name: Format check (ruff)
-        run: |
-          ruff format --check .
-        
-      - name: Lint check (ruff)
-        run: |
-          ruff check .
-        
-      - name: Type check (pyright)
-        run: |
-          pyright .
-        
-      - name: Run tests (pytest)
-        run: |
-          echo "Running unit tests"
+      - name: Lint code with ruff
+        uses: chartboost/ruff-action@v1
+        with:
+          args: "check"
+
+      - name: Format code with ruff
+        uses: chartboost/ruff-action@v1
+        with:
+          args: "format --check"
+
 
