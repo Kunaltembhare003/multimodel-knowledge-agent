@@ -23,10 +23,17 @@ jobs:
         with:
           python-version: '3.12.11'
 
-      - name: Install pipx
+      - name: Install pipx and poetry
         run: |
           pip install pipx
           pipx ensurepath
+          pipx install poetry
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Add poetry virtualenv to PATH
+        run: echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
 
       - name: Lint code with ruff
         uses: chartboost/ruff-action@v1
@@ -38,4 +45,6 @@ jobs:
         with:
           args: "format --check"
 
+      - name: Run Pyright type check
+        uses: jakebailey/pyright-action@v2
 
