@@ -3,7 +3,9 @@ name: Dependency Analysis
 on:
     pull_request:
         branches: [main]
-
+permissions:
+    pull-requests: write
+    
 jobs:
     dependency-review:
         runs-on: ubuntu-latest
