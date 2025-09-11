@@ -10,8 +10,13 @@ jobs:
     dependency-review:
         runs-on: ubuntu-latest
         steps:
-            - name: Dependency Review
+            - name: checkout code
               uses: actions/checkout@v4
+
+            - name: install pip-tools
+              run: pip install pip-tools
+            - name: Generate requirements.txt
+              run: pip-compile pyproject.toml --output-file=requirements.txt
 
             - name: Dependency Review
               if: ${{github.event_name == 'pull_request'}}
