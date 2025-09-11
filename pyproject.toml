@@ -1,39 +1,32 @@
-[build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
-
-[project]
+[tool.poetry]
 name = "multimodel"
 version = "0.0.1"
 description = "Multimodal Personal Knowledge Base Agent (PKBA) that supports text and image inputs, and performs Q\u0026A, summarization, and image analysis"
-authors = [
-  { name = "Kunal.tembhare" },
-]
-license = { file = "LICENSE" }
+authors = ["Kunal.tembhare"]
 readme = "README.md"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License"
-]
-dependencies = [
-    "loguru",
-    "mkdocs",
-    "pip",
-    "pytest",
-    "python-dotenv",
-    "ruff",
-    "langchain (>=0.3.26,<0.4.0)",
-    "openai (>=1.93.0,<2.0.0)",
-    "chromadb (>=1.0.15,<2.0.0)",
-    "sentence-transformers (>=5.0.0,<6.0.0)",
-    "fastapi (>=0.115.14,<0.116.0)",
-    "uvicorn (>=0.35.0,<0.36.0)",
-    "python-multipart (>=0.0.20,<0.0.21)",
-    "pydantic[dotenv] (>=2.11.7,<3.0.0)",
-    "huggingface (>=0.0.1,<0.0.2)",
-    "langchain-openai (>=0.3.28,<0.4.0)",
-]
-requires-python = "==3.12.11"
+
+[tool.poetry.dependencies]
+python = "^3.12.11"
+langchain = ">=0.3.26,<0.4.0"
+openai = ">=1.93.0,<2.0.0"
+chromadb = ">=1.0.15,<2.0.0"
+sentence-transformers = ">=5.0.0,<6.0.0"
+fastapi = ">=0.115.14,<0.116.0"
+uvicorn = ">=0.35.0,<0.36.0"
+python-multipart = ">=0.0.20,<0.0.21"
+pydantic = { version = ">=2.11.7,<3.0.0", extras = ["dotenv"] }
+huggingface = ">=0.0.1,<0.0.2"
+langchain-openai = ">=0.3.28,<0.4.0"
+langchain-community = ">=0.3.29,<0.4.0"
+
+[tool.poetry.group.dev.dependencies]
+black =  "^24.10.0"
+faker = "^30.3.0"
+pytest = "^8.3.2"
+pytest-cov = "^5.0.0"
+pyright = "^1.1.384"
+ruff = "^0.6.9"
+cryptography = "^44.0.1"
 
 
 [tool.ruff]
@@ -48,3 +41,6 @@ extend-select = ["I"]  # Add import sorting
 known-first-party = ["multimodel"]
 force-sort-within-sections = true
 
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
